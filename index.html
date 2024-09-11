@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: blue;
+
+        }
+        header{
+            color:white;
+            width: 20%;
+            margin: auto;
+            background-color: azure;
+            padding: 50px;
+            border-radius: 50px;
+            text-align: center;
+        }
+        main{
+            width: 60%;
+            margin: auto;
+            background-color: azure;
+            padding: 50px;
+            border-radius: 30px;
+        }
+        div{
+            margin: auto;
+            width: 90%;
+            color:white;
+        }
+        img{
+            height: 200px;
+        }
+        footer{
+            text-align: center;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <aside><img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" alt="logo do Docker" width="200px">
+        <nav>
+            <a href="#Sobre o Docker">Sobre o Docker</a>
+            <a href="#Docker Hub">Docker Hub</a>
+            <a href="#Portainer">Portainer</a>
+        </nav>
+    </aside>
+    </header>
+    <main>
+        <h2 id="Sobre o Docker">Sobre o Docker</h2>
+        <h3>O que é o Docker</h2>
+        <p><dfn>Docker</dfn> é uma <del>ferramenta de tortura</del> plataforma aberta para desenvolvimento, entrega e execução de aplicações.</p><br> O Docker te dá a habilidade de empacotar e executar aplicações em um ambiente isolado chamado <strong>container</strong>. O isolamento e segurança permite você executar vários <strong>containers</strong> simultâneamente em um hospedeiro. <strong>Containers</strong> são leves e contém tudo que você precisa para executar a aplicação, então você não depende do que está instalado no hospedeiro.
+        <figure>
+            <img src="https://diginomica.com/sites/default/files/styles/scaled_370/public/images/2017-09/docker-container.jpg.webp?itok=1jfEMcry" alt="container com o logo do Docker" width="300px">
+            <figcaption><em>Todas as aplicações do Docker ficam dentro de containers</em></figcaption>
+        </figure>
+        <br> Você pode compartilhar containeres enquanto trabalha, e ter certeza que todo mundo que você compartilha recebe o mesmo container que funciona na mesma maneira. </p>
+        <h3>Como instalar o Docker no Linux</h3>
+        <p>Você pode instalar o Docker em dispositivos com sistema Linux, Mac ou Windows. <br> Vamos ver como é realizada a instalação em um sistema baseado em Debian:</p>
+        <p>No terminal, executaremos primeiramente o comando <code>sudo apt update</code>.</p>
+        <pre><samp>
+root@debian:~# sudo apt update
+Hit:1 http://deb.debian.org/debian bullseye InRelease
+Hit:2 http://security.debian.org/debian-security bullseye-security InRelease
+Hit:3 http://deb.debian.org/debian bullseye-updates InRelease
+Hit:4 http://deb.debian.org/debian bullseye-backports InRelease
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+All packages are up to date.
+        </samp></pre>
+        <progress value="16" max="100">16%</progress>
+        <p>Depois de atualizar a lista de pacotes, adicionaremos as chaves criptográficas do Docker no nosso sistema: <br>
+            <code>curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -</code></p>
+            <progress value="32" max="100">32%</progress>
+        <p>Agora podemos adicionar o repositório oficial do Docker através do comando: <br>
+            <code>sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"</code></p>
+        <progress value="48" max="100">48%</progress>
+        <p>Atualizaremos a lista de pacote mais uma vez para refletir a adição do repositório: <br>
+        <code>sudo apt update</code></p>
+        <progress value="64" max="100">64%</progress>
+        <p>Finalmente, instalaremos o Docker com o comando: <br>
+        <code>sudo apt install docker-ce</code></p>
+        <progress value="80" max="100">80%</progress>
+        <p>Para verificar se a instação foi finalizada com sucesso, utilizaremos o comando <br>
+        <code>sudo systemctl status docker</code><br><br>
+        Obtendo uma saída semelhante a essa:
+        <pre><samp>docker.service - Docker Application Container Engine
+            Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+            Active: active (running) since Mon 2019-07-08 15:11:19 UTC; 58s ago
+              Docs: https://docs.docker.com
+          Main PID: 5709 (dockerd)
+             Tasks: 8
+            Memory: 31.6M
+            CGroup: /system.slice/docker.service
+                    └─5709 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock</samp></pre></p>
+        <progress value="100" max="100">100%</progress>
+        <h2 id="Docker Hub">Docker Hub</h2>
+        <h3>O que é uma Imagem</h3>
+        <p>Para distribuir todos os arquivos, binários, bibliotecas e configurações que compõem um container, empacotamos em um pacote chamado de Imagem. <br>
+        Por exemplo, para uma imagem do PostgreSQL, essa imagem empacotará os binários do banco de dados, arquivos de configuração e outras dependências. Para um aplicativo da web Python, ele incluirá o tempo de execução do Python, o código do seu aplicativo e todas as suas dependências.
+ 
+    <br>Existem dois conceitos importantes sobre imagens:
+    <ol><li><strong>Imagens são imutáveis.</strong> Uma vez que uma imagem é criada, ela não pode ser modificada. Você só pode fazer uma nova imagem ou adicionar alterações sobre ela.</li>
+    <li><strong>Imagens de conteiner são compostas de camadas.</strong> Cada camada representa um conjunto de alterações no sistema de arquivos que adicionam, removem ou modificam arquivos.</li></ol>
+
+            
+        </p>
+     </main>
+     <div>
+        <h3>Ilustrações em um container <<span>div></span></h3>
+        <img src="https://www.gta.ufrj.br/ensino/eel879/trabalhos_vf_2017_2/docker/images/components.png" alt="">
+        <img src="https://dbconvert.com/blog/content/images/size/w1600/2021/02/docker-apps.png" alt="">
+        <img src="https://www.docker.com/wp-content/uploads/2021/11/container-vm-whatcontainer_2.png" alt="">
+        <img src="https://media.licdn.com/dms/image/D5612AQGeEHapUptoxw/article-cover_image-shrink_600_2000/0/1684079864237?e=2147483647&v=beta&t=UUUAS5PPyisf3YVxC_VFidjxwFeTZwfpb1y4dH0G5xs" alt="">
+        <img src="https://miro.medium.com/v2/resize:fit:800/1*DPS45Tufsih-zED3To4k6g.jpeg" alt="">
+        <br>
+     </div>
+
+    <footer>
+    <hr>© Todos os direitos reservados
+    <address>Contato: elemento@address.com</address>
+    </footer>
+</body>
+</html>
